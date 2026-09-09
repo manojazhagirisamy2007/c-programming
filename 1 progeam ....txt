@@ -1,0 +1,89 @@
+using System;
+
+namespace ElectricityBill
+{
+    public interface inpread
+    {
+        void read();
+    }
+
+    public interface billcal
+    {
+        void cal();
+    }
+
+    public class electricity : inpread, billcal
+    {
+        public int cno, punits, cunits, units;
+        public string cname;
+        public double rate;
+
+        public void read()
+        {
+            Console.Write("Enter the customer number: ");
+            cno = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter the customer name: ");
+            cname = Console.ReadLine();
+
+            Console.Write("Enter the Previous month units: ");
+            punits = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter the Current month units: ");
+            cunits = Convert.ToInt32(Console.ReadLine());
+        }
+
+        public void cal()
+        {
+            units = cunits - punits;
+
+            if (units <= 50)
+            {
+                rate = units * 1.45;
+            }
+            else if (units > 50 && units <= 100)
+            {
+                rate = (units - 50) * 2.3 + 50 * 1.45;
+            }
+            else if (units > 100 && units <= 200)
+            {
+                rate = (units - 100) * 3.2 + 50 * 2.3 + 50 * 1.45;
+            }
+            else
+            {
+                rate = (units - 200) * 4.5
+                     + 100 * 3.2
+                     + 50 * 2.3
+                     + 50 * 1.45;
+            }
+        }
+    }
+
+    public class ebbill : electricity
+    {
+        public void display()
+        {
+            Console.WriteLine("\n----- ELECTRICITY BILL -----");
+            Console.WriteLine("Customer Number : " + cno);
+            Console.WriteLine("Customer Name   : " + cname);
+            Console.WriteLine("Previous Units  : " + punits);
+            Console.WriteLine("Current Units   : " + cunits);
+            Console.WriteLine("Units Consumed  : " + units);
+            Console.WriteLine("Electricity Bill: Rs." + rate);
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ebbill obj = new ebbill();
+
+            obj.read();
+            obj.cal();
+            obj.display();
+
+            Console.ReadKey();
+        }
+    }
+}

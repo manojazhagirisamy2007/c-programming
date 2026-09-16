@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        class first
+        {
+            private int a;
+
+            // Property for the private variable a
+            public int p_a
+            {
+                get
+                {
+                    return a;
+                }
+
+                set
+                {
+                    a = value;
+                }
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            first obj = new first();
+
+            // This will call the set accessor of the property p_a
+            obj.p_a = 95;
+
+            // This will call the get accessor of the property p_a
+            Console.WriteLine(obj.p_a);
+
+            Console.ReadKey();
+        }
+    }
+}

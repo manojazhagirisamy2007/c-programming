@@ -1,0 +1,35 @@
+using System;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        class first
+        {
+            private string[] b = new string[3];
+
+            public string this[int x]
+            {
+                get
+                {
+                    return b[x];
+                }
+                set
+                {
+                    b[x] = value;
+                }
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            first obj = new first();
+
+            obj[2] = "welcome";
+
+            Console.WriteLine(obj[2]);
+
+            Console.ReadKey();
+        }
+    }
+}
